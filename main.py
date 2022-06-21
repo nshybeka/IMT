@@ -1,15 +1,25 @@
 from tkinter import *
+from tkinter import messagebox
 
 BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = "Courier"
 
 
 def count_bmi():
-    your_height = float(input_height.get())
-    your_mass = float(input_mass.get())
-    bmi = round(your_mass / (your_height*your_height))
-    yor_bmi_answer.config(text=bmi)
-    print(bmi)
+
+    try:
+        your_height = float(input_height.get())
+        your_mass = float(input_mass.get())
+        if your_height > 3 or your_mass > 300:
+            messagebox.showinfo(title="Oops", message="Please enter correct value.")
+        else:
+            bmi = round(your_mass / (your_height*your_height))
+    except ValueError:
+        messagebox.showinfo(title="Oops", message="Please enter you correct value.")
+        print("Enter correct value")
+    else:
+        yor_bmi_answer.config(text=bmi)
+        print(bmi)
 
 
 window = Tk()
